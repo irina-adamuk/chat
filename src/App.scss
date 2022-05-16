@@ -1,0 +1,27 @@
+
+body {
+  font-family: 'Tahoma';
+  margin: 0;
+  padding: 0;
+  background: rgb(151,227,242);
+  background: linear-gradient(0deg, rgba(151,227,242,1) 42%, rgba(162,186,223,1) 100%);
+}
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1600px;
+  padding: 0 10px;
+  background: rgb(151,227,242);
+  background: linear-gradient(0deg, rgba(151,227,242,1) 42%, rgba(162,186,223,1) 100%);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+
+

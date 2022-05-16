@@ -1,0 +1,37 @@
+.send-form {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	background-color: white;
+	min-height: 5vh;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+  	width: 100%;
+	padding: 10px;
+}
+
+.send-form-input {
+	width: 100%;
+	height: auto;
+	border: none;
+	outline: none;
+	font-size: 30px;
+}
+
+.send-form-button {
+	border:none;
+	outline: none;
+	padding: 10px;
+	background-color:#a2badf;
+	color: white;
+	border-radius: 5px;
+	font-size: 16px;
+	&:hover {
+		cursor: pointer;
+	}
+}

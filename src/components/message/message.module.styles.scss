@@ -1,0 +1,22 @@
+.message {
+  min-width: 100%;
+	margin-bottom: 20px;
+	display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+	background: white;
+	color: gray;
+  font-size: 30px;
+  box-sizing: border-box;
+  font-family: "Tahoma";
+  border-radius: 20px;
+}
+.message-author {
+  font-size: 25px;
+  color: rgb(159, 159, 187);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+

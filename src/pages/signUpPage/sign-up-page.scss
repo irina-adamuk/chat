@@ -1,0 +1,16 @@
+.sign-in-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(360deg, rgba(151,227,242,1) 0%, rgba(162,186,223,1) 100%);
+}
+.title-wrap {
+    overflow: hidden;
+}
+.title {
+    color: white;
+    font-size: 60px;
+    text-align: center;
+}

@@ -1,0 +1,47 @@
+.notfound-page {
+    background: linear-gradient(0deg, rgba(151,227,242,1) 42%, rgba(162,186,223,1) 100%);
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.notfound-title {
+    position: absolute;
+    font-size: 230px;
+    color: rgba(108, 99, 247, 0.808);
+    font-weight: 700;
+    transform: translateY(-60%);
+    font-family: 'Impact';
+}
+.notfound-subtitle {
+    position: absolute;
+    z-index: 2;
+    font-size: 60px;
+    color: rgb(185, 185, 219);
+    font-weight: 700;
+    transform: translateY(-15%);
+    font-family: 'Comic Sans MS';
+}
+.cloud-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.cloud {
+    position: absolute;
+    width: 700px;
+    z-index: 1;
+}
+.notfound-btn {
+    position: absolute;
+    z-index: 2;
+    transform: translateY(200%);
+}

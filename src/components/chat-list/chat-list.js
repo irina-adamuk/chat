@@ -4,7 +4,6 @@ import { ChatListItem } from "./chat";
 
 import { Link, useParams } from "react-router-dom";
 
-
 import "./chat-list.scss";
 
 export const ChartList = () => {

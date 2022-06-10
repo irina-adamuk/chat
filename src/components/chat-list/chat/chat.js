@@ -5,7 +5,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
 
-import BackgroundLetterAvatars from '../../background-letter-avatar/bg-letter-avatar';
+import {BackgroundLetterAvatar} from '../../background-letter-avatar';
 import styles from './chat.scss';
 
 const ListItemStyles = styled(ListItem)`
@@ -18,7 +18,7 @@ const ListItemStyles = styled(ListItem)`
 `;
 
 
-export const ChatListItem = ({chat, selected, handleListItemClick}) => {
+export const ChatListItem = ({chat, selected}) => {
 
   return (
     <ListItemStyles
@@ -26,10 +26,10 @@ export const ChatListItem = ({chat, selected, handleListItemClick}) => {
       alignItems="flex-start"
       button={true}
       selected={selected}
-      onClick={handleListItemClick}
+
     >
       <ListItemAvatar>
-        <BackgroundLetterAvatars name={chat.chatName}/>
+        <BackgroundLetterAvatar name={chat.chatName}/>
       </ListItemAvatar>
       <ListItemText
           primary={chat.chatName}

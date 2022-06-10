@@ -1,0 +1,16 @@
+.profile-page {
+    background: linear-gradient(0deg, rgba(151,227,242,1) 42%, rgba(162,186,223,1) 100%);
+    width: 100%;
+    min-height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-title {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 700;
+}

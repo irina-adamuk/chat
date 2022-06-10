@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import { ThemeProvider, createTheme } from "@mui/material";
 import './index.css';
 import App from './App';
@@ -28,7 +29,7 @@ const theme = createTheme({
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <App />
+        <App />
     </ThemeProvider>
   </React.StrictMode>
 );

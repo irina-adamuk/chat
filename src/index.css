@@ -8,3 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.button-link {
+  text-decoration: none;
+}
+.list-link {
+  text-decoration: none;
+}
+

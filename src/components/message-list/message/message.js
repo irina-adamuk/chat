@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Paper from "@mui/material/Paper";
 
 import "./message.scss";
-import BackgroundLetterAvatars from "../../background-letter-avatar/bg-letter-avatar";
+import {BackgroundLetterAvatar} from "../../background-letter-avatar";
 
 
 export const Message = ({ message, author, date }) => {
@@ -12,7 +12,7 @@ export const Message = ({ message, author, date }) => {
         author === "User User" && 'currentMessage'
       )}>
       <div className="message-wrapper">
-        <BackgroundLetterAvatars name={author} />
+        <BackgroundLetterAvatar name={author} />
         <div className="papper-wrapper">
           <Paper elevation={6} className="message">
             <div className="message-author">{author}</div>

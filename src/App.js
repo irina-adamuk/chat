@@ -1,11 +1,21 @@
-import Message from './components/message/Message';
-import './App.css';
+import { ChartList } from './components/chat-list/chat-list';
+import { AsideHeader } from './components/aside-header/aside-header';
+import PersistentDrawerRight from './components/persistent-drawer/persistent-drawer';
 
-function App() {
-  const MessageText = 'Всем хорошего дня и замечательного настроения!'
+
+import './App.scss';
+
+const App = () => {
+  
   return (
     <div className="App">
-      <Message props={MessageText}/>
+      <aside className='aside-bar'>
+        <AsideHeader/>
+        <ChartList/>
+      </aside>
+      <div className='content-box'>
+        <PersistentDrawerRight/>
+      </div>
     </div>
   );
 }

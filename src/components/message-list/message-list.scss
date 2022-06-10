@@ -1,0 +1,26 @@
+.messages-container {
+	height: calc(100vh - 126px);
+	// overflow-y: auto;
+	overflow-x: hidden;
+	// padding: 10px 10px 0 10px;
+}
+
+.send-form {
+	position: relative;
+	transform: translateX(2.5%);
+
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-end;
+	width: 95%;
+	padding: 15px 15px 5px 15px;
+	border-radius: 10px;
+}
+.send-form-btn {
+	&:hover {
+		cursor: pointer;
+	}
+}
+

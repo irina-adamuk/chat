@@ -1,0 +1,8 @@
+.chart-item {
+    cursor: pointer;
+    transition: all 0.3s linear;
+    &:hover {
+        background-color: rgb(171, 171, 202);
+        
+    }
+}

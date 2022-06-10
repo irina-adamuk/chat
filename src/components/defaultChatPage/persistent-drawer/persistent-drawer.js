@@ -17,7 +17,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { MessageList } from "../message-list";
+import { MessageList } from "../../../components";
 import ViewSidebarIcon from "@mui/icons-material/ViewSidebar";
 import { ListItemAvatar } from "@mui/material";
 import { Avatar } from "@mui/material";
@@ -69,7 +69,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-start",
 }));
 
-export default function PersistentDrawerRight() {
+export const PersistentDrawerRight = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -132,8 +132,6 @@ export default function PersistentDrawerRight() {
             <ListItem>
               <Typography component="div">Channel info</Typography>
             </ListItem>
-
-
 
             <ListItem>
               <ListItemAvatar>

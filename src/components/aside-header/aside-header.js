@@ -11,7 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import  Drawer  from "@mui/material/Drawer";
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import { LeftMenu } from './menu/left-menu';
+import { LeftMenu } from './menu';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

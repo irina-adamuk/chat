@@ -32,12 +32,16 @@ export const LeftMenu = () => {
         </ListItemIcon>
         <ListItemText>Posts</ListItemText>
       </MenuItem>
-      <MenuItem>
-        <ListItemIcon>
-          <MailOutlineIcon color="primary" />
-        </ListItemIcon>
-        <ListItemText>Messages</ListItemText>
-      </MenuItem>
+
+      <NavLink to="/chat">
+        <MenuItem>
+          <ListItemIcon>
+            <MailOutlineIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText>Messages</ListItemText>
+        </MenuItem>
+      </NavLink>
+
       <MenuItem>
         <ListItemIcon>
           <PeopleIcon color="primary" />

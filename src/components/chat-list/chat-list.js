@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 
 import "./chat-list.scss";
 
-export const ChartList = () => {
+export const ChatList = () => {
   const chats = [
     {
       chatName: "Иван Петров",

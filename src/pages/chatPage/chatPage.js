@@ -1,4 +1,4 @@
-import { AsideHeader, ChartList, StartChatPage, DefaultChatPage } from "../../components";
+import { AsideHeader, ChatList, StartChatPage, DefaultChatPage } from "../../components";
 import {
   Routes,
   Route,
@@ -9,7 +9,7 @@ export const ChatPage = () => {
     <>
       <aside className="aside-bar">
         <AsideHeader />
-        <ChartList />
+        <ChatList />
       </aside>
       <div className="content-box">
         <Routes>

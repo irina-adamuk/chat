@@ -1,25 +1,24 @@
-import { TOGGLE_VISIBLE_PROFILE, UPDATE_PROFILE } from "./types";
+import {  } from "./types";
+import { nanoid } from "nanoid";
+import { format } from "date-fns";
+
 
 
 const initialState = {
-  firstName: "",
-	lastName: "",
-	dateOfBirth: "",
-	userName: "",
-	city: "",
-	description: "",
-	avatarUrl: "https://place-hold.it/300x500/666/fff.png/000",
-	isVisibleProfile: true,
+	messages: {
+	chat2: [
+		{ 
+		author: "user user",
+		id: nanoid(3),
+		message: "hello",
+		date: format(new Date(), "dd-MM-yyyy HH:mm:ss"),}]
+	}
+
 };
-export const profileReducer = (state = initialState, action) => {
+export const messageReducer = (state = initialState, action) => {
   switch(action.type) {
-		case TOGGLE_VISIBLE_PROFILE:
-			return {...state, isVisibleProfile: !state.isVisibleProfile};
-		case UPDATE_PROFILE:
-			return {
-				...state, 
-				...action.payload
-			};
+
+
     default: 
       return state;
   }

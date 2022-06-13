@@ -1,4 +1,6 @@
 import { CREATE_CONVERSATION, DELETE_CONVERSATION } from "./types";
+import { nanoid } from "nanoid";
+import { format } from "date-fns";
 
 const initialState = {
   conversations: [
@@ -65,49 +67,27 @@ const initialState = {
       id: "chat9",
       message: "Не знаю как это можно решить",
     },
-
-    {
-      chatName: "Мария Козлова",
-      author: "Мария Козлова",
-      date: "10.02.2020",
-      id: "chat10",
-      message: "Погоди!",
-    },
-    {
-      chatName: "Анна Котикова",
-      author: "Анна Котикова",
-      date: "18.03.2021",
-      id: "chat11",
-      message: "Встреча завтра!",
-    },
-    {
-      chatName: "Екатерина Андреева",
-      author: "Екатерина Андреева",
-      date: "10.04.2022",
-      id: "chat12",
-      message: "Главные новости на сегодня...",
-    },
-    {
-      chatName: "Гарри Поттер",
-      author: "Гарри Поттер",
-      date: "22.02.2021",
-      id: "chat13",
-      message: "Вышел новый фильм, не пропусти!",
-    },
   ],
+	// conversations:['room1', 'room2', 'room3']
 };
 export const conversationsReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_CONVERSATION:
       return {
         ...state,
-        conversations: [...state.conversations, action.payload],
+        conversations: [...state.conversations, {
+          chatName: action.payload,
+          author: action.payload,
+          date: format(new Date(),  "dd-MM-yyyy HH:mm:ss"),
+          id: nanoid(1),
+          message: "",
+        }],
       };
     case DELETE_CONVERSATION:
       return {
         ...state,
         conversations: state.conversations.filter(
-          (conversation) => conversation !== action.payload
+          (conversation) => conversation.id !== action.payload
         ),
       };
     default:

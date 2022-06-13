@@ -8,9 +8,26 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+
+import { useSelector, useDispatch } from "react-redux";
+import {createConversation} from "../../store/conversations";
+
+
+
 export default function CreateChatBtn() {
   const [open, setOpen] = React.useState(false);
   const [inputValue, setInputValue] = useState("");
+  const conversations = useSelector((state) => state.conversations.conversations);
+  const dispatch = useDispatch();
+
+  const createConversationByName = () => {
+    const isValidName =!conversations.includes(inputValue);
+    if (!!inputValue && isValidName) {
+        dispatch(createConversation(inputValue));
+    } else {
+        alert("Не валидное название чата!")
+    }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,6 +35,8 @@ export default function CreateChatBtn() {
 
   const handleClose = () => {
     setOpen(false);
+    createConversationByName();
+
   };
   const handleChangeInput = (event) => {
     const value = event.target.value;
@@ -25,7 +44,7 @@ export default function CreateChatBtn() {
     if (!!value) {
         setInputValue(value);
   }
-  console.log(value);
+
 }
 
   return (
@@ -47,7 +66,7 @@ export default function CreateChatBtn() {
             type="text"
             fullWidth
             variant="standard"
-            onChange={handleChangeInput()}
+            onChange={handleChangeInput}
           />
         </DialogContent>
         <DialogActions>

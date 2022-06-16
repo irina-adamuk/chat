@@ -24,7 +24,7 @@ export const ChatListItem = ({chatId, chat, selected, deleteConversationByName})
 
   const message = useSelector((state) => {
     const messages = state.messages.messages[chatId] ?? [];
-    console.log("messages:", messages);
+    // console.log("messages:", messages);
     return messages[messages.length - 1];
   });
 
@@ -59,7 +59,8 @@ export const ChatListItem = ({chatId, chat, selected, deleteConversationByName})
       </div>
       <IconButton
         aria-label="delete"
-        onClick={(e) => deleteConversationByName(chat.id, e)}
+        // onClick={(e) => deleteConversationByName(chat.id, e)}
+        onClick={(e) => deleteConversationByName(chatId, e)}
       >
         <DeleteIcon />
       </IconButton>

@@ -64,9 +64,7 @@ export const messageReducer = (state = initialState, action) => {
       };
     case DELETE_CONVERSATION: {
       delete state.messages[action.payload];
-      return {
-        state,
-      };
+      return state;
     }
     default:
       return state;

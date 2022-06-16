@@ -6,8 +6,10 @@ import { Send } from "@mui/icons-material";
 import { nanoid } from "nanoid";
 import { format } from "date-fns";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
+
+import { sendMessage, deleteMessage } from "../../store/messages";
 import "simplebar/dist/simplebar.min.css";
 import "./message-list.scss";
 
@@ -30,6 +32,7 @@ import "./message-list.scss";
 
 export const MessageList = () => {
   const { chatId } = useParams();
+  const dispatch = useDispatch();
   const messages = useSelector((state)=> state.messages.messages[chatId] ?? []);
 
   
@@ -43,13 +46,14 @@ export const MessageList = () => {
   const [value, setValue] = useState("");
   const scrollableNodeRef = React.createRef();
 
-  const sendMessage = useCallback(
+  const send = useCallback(
     (message, author = "User User") => {
       if (message) {
+        dispatch(sendMessage(chatId, {message, author}))
         setValue("");
       }
     },
-    []
+    [dispatch, chatId]
   );
   useEffect(() => {
     if (scrollableNodeRef.current) {
@@ -74,7 +78,7 @@ export const MessageList = () => {
   //   return () => {
   //     clearInterval(timerId);
   //   };
-  // }, [sendMessage, messages, chatId]);
+  // }, [send, messages, chatId]);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -82,7 +86,7 @@ export const MessageList = () => {
 
   const handlePressInput = ({ code }) => {
     if (code === "Enter") {
-      sendMessage(value);
+      send(value);
     }
   };
 
@@ -96,10 +100,12 @@ export const MessageList = () => {
         >
           {messages.map((message) => (
             <Message
+              messageId={message.id}
               key={message.id}
               message={message.message}
               author={message.author}
               date={message.date}
+              chatId={chatId}
             ></Message>
           ))}
         </SimpleBar>
@@ -118,7 +124,7 @@ export const MessageList = () => {
                 <Send
                   className="send-form-btn"
                   color="primary"
-                  onClick={() => sendMessage(value)}
+                  onClick={() => send(value)}
                 />
               )}
             </InputAdornment>

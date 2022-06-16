@@ -1,4 +1,5 @@
-import { CREATE_CONVERSATION, DELETE_CONVERSATION } from "./types";
+import { CREATE_CONVERSATION } from "./types";
+import { DELETE_CONVERSATION } from "../types";
 import { nanoid } from "nanoid";
 import { format } from "date-fns";
 
@@ -6,66 +7,52 @@ const initialState = {
   conversations: [
     {
       chatName: "Иван Петров",
-      author: "Иван Петров",
-      date: "10.02.2020",
+      // author: "Иван Петров",
+      // date: "10.02.2020",
       id: "chat1",
-      message: "Привет, нам нужно встретиться!",
+      // message: "Привет, нам нужно встретиться!",
     },
     {
       chatName: "Алена Богданова",
-      author: "Алена Богданова",
-      date: "11.02.2020",
+      // author: "Алена Богданова",
+      // date: "11.02.2020",
       id: "chat2",
-      message: "Привет, как дела!",
+      // message: "Привет, как дела!",
     },
     {
       chatName: "Маргарита Козлова",
-      author: "Маргарита Козлова",
-      date: "07.03.2020",
+      // author: "Маргарита Козлова",
+      // date: "07.03.2020",
       id: "chat3",
-      message: "Куда пропал!",
+      // message: "Куда пропал!",
     },
     {
       chatName: "Семен Агеев",
-      author: "Семен Агеев",
-      date: "01.04.2022",
+      // author: "Семен Агеев",
+      // date: "01.04.2022",
       id: "chat4",
-      message: "Че , как?",
+      // message: "Че , как?",
     },
     {
       chatName: "Павел Воля",
-      author: "Павел Воля",
-      date: "02.02.2022",
+      // author: "Павел Воля",
+      // date: "02.02.2022",
       id: "chat5",
-      message: "Есть интересная тема =)",
+      // message: "Есть интересная тема =)",
     },
     {
       chatName: "Вася Пупкин",
-      author: "Вася Пупкин",
-      date: "15.04.2022",
+      // author: "Вася Пупкин",
+      // date: "15.04.2022",
       id: "chat6",
-      message: "Не могу!",
+      // message: "Не могу!",
     },
     {
       chatName: "Оксана Гвоздикова",
-      author: "Оксана Гвоздикова",
-      date: "11.08.2020",
+      // author: "Оксана Гвоздикова",
+      // date: "11.08.2020",
       id: "chat7",
-      message: "Пока!",
-    },
-    {
-      chatName: "Катя Пушкарева",
-      author: "Катя Пушкарева",
-      date: "10.02.2020",
-      id: "chat8",
-      message: "Привет, нам нужно встретиться",
-    },
-    {
-      chatName: "Кирилл Голубев",
-      author: "Кирилл Голубев",
-      date: "13.05.2022",
-      id: "chat9",
-      message: "Не знаю как это можно решить",
+      // message: "Пока!",
     },
   ],
 	// conversations:['room1', 'room2', 'room3']
@@ -77,10 +64,10 @@ export const conversationsReducer = (state = initialState, action) => {
         ...state,
         conversations: [...state.conversations, {
           chatName: action.payload,
-          author: action.payload,
-          date: format(new Date(),  "dd-MM-yyyy HH:mm:ss"),
+          // author: action.payload,
+          // date: format(new Date(),  "dd-MM-yyyy HH:mm:ss"),
           id: nanoid(1),
-          message: "",
+          // message: "",
         }],
       };
     case DELETE_CONVERSATION:

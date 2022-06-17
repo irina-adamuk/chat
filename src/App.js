@@ -1,4 +1,4 @@
-import {HomePage, ProfilePage, SignUpPage, SignInPage, ChatPage, PageNotFound} from './pages';
+import {HomePage, ProfilePage, SignUpPage, SignInPage, ChatPage, PageNotFound, GistsPage} from './pages';
 
 import {
   BrowserRouter,
@@ -21,6 +21,7 @@ const App = () => {
           <Route path="/chat/*" element={<ChatPage/>}></Route>
           <Route path="/sign-in" element={<SignInPage/>}></Route>
           <Route path="/sign-up" element={<SignUpPage/>}></Route>
+          <Route path="/gists" element={<GistsPage/>}></Route>
           <Route path="*" element={<PageNotFound/>}></Route>
         </Routes>
       </BrowserRouter>

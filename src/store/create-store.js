@@ -2,6 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { profileReducer} from "./profile";
 import { conversationsReducer } from "./conversations";
 import { messageReducer } from "./messages/reducer";
+import { gistsReducer } from "./gists/reducer";
 import { logger, timeSheduler, botMessage, crashReporter, thunk } from "./middlewares";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -18,7 +19,8 @@ const persistConfig = {
 const rootReducer = combineReducers({ 
   profile: profileReducer, 
   conversations: conversationsReducer,
-  messages: messageReducer 
+  messages: messageReducer,
+  gists: gistsReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

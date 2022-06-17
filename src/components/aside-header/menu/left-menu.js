@@ -26,12 +26,14 @@ export const LeftMenu = () => {
         </MenuItem>
       </NavLink>
 
-      <MenuItem>
-        <ListItemIcon>
-          <TableChartIcon color="primary" />
-        </ListItemIcon>
-        <ListItemText>Posts</ListItemText>
-      </MenuItem>
+      <NavLink to="/gists">
+        <MenuItem>
+          <ListItemIcon>
+            <TableChartIcon color="primary" />
+          </ListItemIcon>
+          <ListItemText>Gists</ListItemText>
+        </MenuItem>
+      </NavLink >
 
       <NavLink to="/chat">
         <MenuItem>

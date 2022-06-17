@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
 
 import { sendMessage, deleteMessage } from "../../store/messages";
+import { sendMessageWithBot } from "../../store/messages";
 import "simplebar/dist/simplebar.min.css";
 import "./message-list.scss";
 
@@ -49,7 +50,8 @@ export const MessageList = () => {
   const send = useCallback(
     (message, author = "User User") => {
       if (message) {
-        dispatch(sendMessage(chatId, {message, author}))
+        // dispatch(sendMessage(chatId, {message, author}))
+        dispatch(sendMessageWithBot(chatId, {message, author}))
         setValue("");
       }
     },

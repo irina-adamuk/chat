@@ -3,11 +3,15 @@ import { profileReducer} from "./profile";
 import { conversationsReducer } from "./conversations";
 import { messageReducer } from "./messages/reducer";
 import { gistsReducer } from "./gists/reducer";
-import { logger, timeSheduler, botMessage, crashReporter, thunk } from "./middlewares";
+import { getPublicGistsApi, getGistsByNameApi } from "../api/gists";
+// import { logger, timeSheduler, botMessage, crashReporter, thunk } from "./middlewares";
+import { logger, timeSheduler, botMessage, crashReporter } from "./middlewares";
+import thunk from "redux-thunk";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 
+const api = { getPublicGistsApi, getGistsByNameApi };
 
 const persistConfig = {
   key: 'root',
@@ -20,7 +24,7 @@ const rootReducer = combineReducers({
   profile: profileReducer, 
   conversations: conversationsReducer,
   messages: messageReducer,
-  gists: gistsReducer
+  gists: gistsReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -30,7 +34,7 @@ export const store = createStore(
   //compose для передачи нескольких функций во втором аргументке store
   compose(
     //applyMiddleware для того, чтобы указать, какие Middleware передавать
-    applyMiddleware(logger, timeSheduler, botMessage, crashReporter, thunk),
+    applyMiddleware(thunk.withExtraArgument(api), logger, timeSheduler, botMessage, crashReporter),
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
       : (args) => args

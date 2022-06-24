@@ -13,6 +13,8 @@ import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual
 import SummarizeIcon from "@mui/icons-material/Summarize";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { NavLink } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../api/firebase";
 
 export const LeftMenu = () => {
   return (
@@ -77,14 +79,14 @@ export const LeftMenu = () => {
       </MenuItem>
       </NavLink>
 
-      <NavLink to="/sign-in">
-        <MenuItem>
+      {/* <NavLink to="/sign-in"> */}
+        <MenuItem onClick={() => signOut(auth)}>
           <ListItemIcon>
             <LogoutIcon color="primary" />
           </ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </MenuItem>
-      </NavLink>
+      {/* </NavLink> */}
     </MenuList>
   );
 };

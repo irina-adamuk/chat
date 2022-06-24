@@ -4,8 +4,19 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getConversations } from "../../store/conversations";
 
 export const ChatPage = () => {
+  const dispatch = useDispatch();
+  const conversations = useSelector((state) => state.conversations.conversations )
+  useEffect(() => {
+    if(!conversations.length) {
+      dispatch(getConversations());
+    }
+  }, [dispatch]);
+
   return (
     <>
       <aside className="aside-bar">

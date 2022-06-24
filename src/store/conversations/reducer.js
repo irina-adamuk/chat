@@ -1,82 +1,119 @@
-import { CREATE_CONVERSATION } from "./types";
+import {
+  // CREATE_CONVERSATION,
+  GET_CONVERSATIONS_START,
+  GET_CONVERSATIONS_SUCCESS,
+  GET_CONVERSATIONS_ERROR,
+  CREATE_CONVERSATION_START,
+  CREATE_CONVERSATION_SUCCESS,
+  CREATE_CONVERSATION_ERROR,
+  REMOVE_CONVERSATION_START,
+  REMOVE_CONVERSATION_SUCCESS,
+  REMOVE_CONVERSATION_ERROR,
+} from "./types";
+
 import { DELETE_CONVERSATION } from "../types";
 import { nanoid } from "nanoid";
 import { format } from "date-fns";
 
 const initialState = {
-  conversations: [
-    {
-      chatName: "Иван Петров",
-      // author: "Иван Петров",
-      // date: "10.02.2020",
-      id: "chat1",
-      // message: "Привет, нам нужно встретиться!",
-    },
-    {
-      chatName: "Алена Богданова",
-      // author: "Алена Богданова",
-      // date: "11.02.2020",
-      id: "chat2",
-      // message: "Привет, как дела!",
-    },
-    {
-      chatName: "Маргарита Козлова",
-      // author: "Маргарита Козлова",
-      // date: "07.03.2020",
-      id: "chat3",
-      // message: "Куда пропал!",
-    },
-    {
-      chatName: "Семен Агеев",
-      // author: "Семен Агеев",
-      // date: "01.04.2022",
-      id: "chat4",
-      // message: "Че , как?",
-    },
-    {
-      chatName: "Павел Воля",
-      // author: "Павел Воля",
-      // date: "02.02.2022",
-      id: "chat5",
-      // message: "Есть интересная тема =)",
-    },
-    {
-      chatName: "Вася Пупкин",
-      // author: "Вася Пупкин",
-      // date: "15.04.2022",
-      id: "chat6",
-      // message: "Не могу!",
-    },
-    {
-      chatName: "Оксана Гвоздикова",
-      // author: "Оксана Гвоздикова",
-      // date: "11.08.2020",
-      id: "chat7",
-      // message: "Пока!",
-    },
-  ],
-	// conversations:['room1', 'room2', 'room3']
+  // conversations: [
+  //   {
+  //     chatName: "Иван Петров",
+  //     id: "chat1",
+  //   },
+  //   {
+  //     chatName: "Алена Богданова",
+  //     id: "chat2",
+  //   },
+  //   {
+  //     chatName: "Маргарита Козлова",
+  //     id: "chat3",
+  //   },
+  //   {
+  //     chatName: "Семен Агеев",
+  //     id: "chat4",
+  //   },
+  //   {
+  //     chatName: "Павел Воля",
+  //     id: "chat5",
+  //   },
+  //   {
+  //     chatName: "Вася Пупкин",
+  //     id: "chat6",
+  //   },
+  //   {
+  //     chatName: "Оксана Гвоздикова",
+  //     id: "chat7",
+  //   },
+  // ],
+  conversations: [],
+  pending: false,
+  error: null,
+  pendingCreate: false,
+  errorCreate: null,
+  pendingRemove: false,
+  errorRemove: null,
 };
+
 export const conversationsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_CONVERSATION:
+    // case CREATE_CONVERSATION:
+    //   return {
+    //     ...state,
+    //     conversations: [
+    //       ...state.conversations,
+    //       {
+    //         chatName: action.payload,
+    //         id: nanoid(1),
+    //       },
+    //     ],
+    //   };
+
+    // case DELETE_CONVERSATION:
+    //   return {
+    //     ...state,
+    //     conversations: state.conversations.filter(
+    //       (conversation) => conversation.id !== action.payload
+    //     ),
+    //   };
+
+    case GET_CONVERSATIONS_START:
+      return { ...state, pending: true, error: null };
+
+    case GET_CONVERSATIONS_SUCCESS:
+      return { ...state, pending: false, conversations: action.payload };
+
+    case GET_CONVERSATIONS_ERROR:
+      return { ...state, pending: false, error: action.payload };
+
+    case CREATE_CONVERSATION_START:
+      return { ...state, pendingCreate: true, errorCreate: null };
+
+    case CREATE_CONVERSATION_SUCCESS:
       return {
         ...state,
-        conversations: [...state.conversations, {
-          chatName: action.payload,
-          // author: action.payload,
-          // date: format(new Date(),  "dd-MM-yyyy HH:mm:ss"),
-          id: nanoid(1),
-          // message: "",
-        }],
+        pendingCreate: false,
+        conversations: [...state.conversations, action.payload],
       };
-    case DELETE_CONVERSATION:
+
+    case CREATE_CONVERSATION_ERROR:
+      return { ...state, pendingRemove: false, errorRemove: action.payload };
+
+      
+    case REMOVE_CONVERSATION_START:
+      return { ...state, pendingRemove: true, errorRemove: null };
+
+    case REMOVE_CONVERSATION_SUCCESS:
       return {
         ...state,
         conversations: state.conversations.filter(
           (conversation) => conversation.id !== action.payload
         ),
       };
+
+    case REMOVE_CONVERSATION_ERROR:
+      return { ...state, pendingRemove: false, errorRemove: action.payload };
+
     default:
       return state;
   }

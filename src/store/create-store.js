@@ -17,7 +17,7 @@ import {
 import {
   getMessagesApi,
   createMessageApi,
-  // removeMessageApi,
+  removeMessageApi,
 } from "../api/messages";
 
 const api = {
@@ -28,6 +28,7 @@ const api = {
   removeConversationApi,
   getMessagesApi,
   createMessageApi,
+  removeMessageApi
 };
 
 const persistConfig = {

@@ -5,7 +5,10 @@ import {
   getMessagesError,
 	createMessageStart,
 	createMessageSuccess,
-	createMessageError
+	createMessageError,
+	removeMessageStart,
+	removeMessageSuccess,
+	removeMessageError
 } from "./actions";
 import { nanoid } from "nanoid";
 import { format } from "date-fns";
@@ -33,8 +36,10 @@ export const getMessages = () => async (dispatch, _, api) => {
 		const snapshot = await api.getMessagesApi();
 		snapshot.forEach(snap => {
 			messages[snap.key] = Object.values(snap.val());
+			console.log("snap", messages[snap.key] = Object.values(snap.val()))
 		});
-		dispatch(getMessagesSuccess());
+
+		dispatch(getMessagesSuccess(messages));
 
 	} catch(e) {
 		dispatch(getMessagesError(e));
@@ -48,5 +53,15 @@ export const createMessage = (chatId, message) => async (dispatch, _, api) => {
 		dispatch(createMessageSuccess(chatId, message));
 	}catch (e) {
 		dispatch(createMessageError(e));
+	}
+}
+
+export const deleteMessage = (chatId, messageId) => async (dispatch, _, api) => {
+	try {
+		dispatch(removeMessageStart());
+		await api.removeMessageApi(chatId, messageId);
+		dispatch(removeMessageSuccess(chatId, messageId));
+	}catch (e) {
+		dispatch(removeMessageError(e));
 	}
 }

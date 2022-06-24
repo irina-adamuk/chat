@@ -7,6 +7,9 @@ import {
   CREATE_MESSAGE_START,
   CREATE_MESSAGE_SUCCESS,
   CREATE_MESSAGE_ERROR,
+  REMOVE_MESSAGE_START,
+  REMOVE_MESSAGE_SUCCESS,
+  REMOVE_MESSAGE_ERROR
 } from "./types";
 import { DELETE_CONVERSATION } from "../types";
 import { nanoid } from "nanoid";
@@ -47,6 +50,8 @@ const initialState = {
   error: null,
   pandingCreate: false,
   errorCreate: null,
+  pendingRemove: false,
+  errorRemove: null,
 };
 
 export const messageReducer = (state = initialState, action) => {
@@ -84,6 +89,7 @@ export const messageReducer = (state = initialState, action) => {
       return { ...state, pending: true, error: null };
 
     case GET_MESSAGES_SUCCESS:
+    console.log(action.payload)
       return { ...state, pending: false, messages: action.payload };
 
     case GET_MESSAGES_ERROR:
@@ -104,6 +110,22 @@ export const messageReducer = (state = initialState, action) => {
 
     case CREATE_MESSAGE_ERROR:
       return { ...state, pendingCreate: false, errorCreate: action.payload };
+
+    case REMOVE_MESSAGE_START:
+      return { ...state, pendingRemove: true, errorRemove: null };
+
+    case REMOVE_MESSAGE_SUCCESS:
+      return {
+        ...state,
+        messages: {
+          [action.payload.chatId]: state.messages[action.payload.chatId].filter(
+            (message) => message.id !== action.payload.messageId
+          ),
+        },
+      };
+
+    case REMOVE_MESSAGE_ERROR:
+      return { ...state, pendingRemove: false, errorRemove: action.payload };
 
     default:
       return state;

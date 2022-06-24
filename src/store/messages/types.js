@@ -8,3 +8,7 @@ export const GET_MESSAGES_ERROR = "@messages/ get messages error";
 export const CREATE_MESSAGE_START = "@messages/ create messages start";
 export const CREATE_MESSAGE_SUCCESS = "@messages/ create messages success";
 export const CREATE_MESSAGE_ERROR = "@messages/ create messages error";
+
+export const REMOVE_MESSAGE_START = "@messages/ remove messages start";
+export const REMOVE_MESSAGE_SUCCESS = "@messages/ remove messages success";
+export const REMOVE_MESSAGE_ERROR = "@messages/ remove messages error";

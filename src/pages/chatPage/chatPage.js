@@ -7,6 +7,7 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getConversations } from "../../store/conversations";
+import { getMessages } from "../../store/messages";
 
 export const ChatPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const ChatPage = () => {
     if(!conversations.length) {
       dispatch(getConversations());
     }
+    dispatch(getMessages());
   }, [dispatch]);
 
   return (

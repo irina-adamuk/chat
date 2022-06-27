@@ -11,6 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import { useSelector, useDispatch } from "react-redux";
 import {createConversation} from "../../store/conversations";
+import {nanoid} from "nanoid";
 
 
 
@@ -23,7 +24,7 @@ export default function CreateChatBtn() {
   const createConversationByName = () => {
     const isValidName =!conversations.includes(inputValue);
     if (!!inputValue && isValidName) {
-        dispatch(createConversation(inputValue));
+        dispatch(createConversation({chatName: inputValue, id: nanoid(2)}));
     } else {
         alert("Не валидное название чата!")
     }
@@ -42,7 +43,7 @@ export default function CreateChatBtn() {
     const value = event.target.value;
 
     if (!!value) {
-        setInputValue(value);
+      setInputValue(value);
   }
 
 }

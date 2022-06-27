@@ -1,56 +1,50 @@
 import { useState } from "react";
-import validator from "validator";
+// import validator from "validator";
 import { Input } from "@mui/material";
 import Button from "@mui/material/Button";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { auth } from "../../../api/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 
 import "./sign-in-form.scss";
+const defaultFormFields = {
+  email: "",
+  password: "",
+}
 
 export const SignInForm = () => {
-  const [register, setRegister] = useState(() => {
-    return {
-      email: "",
-      password: "",
-    };
-  });
+  const [formFields, setFormFields] = useState(defaultFormFields);
+  const { email, password } = formFields;
 
-  const changeInputRegister = (event) => {
-    event.persist();
-    setRegister((prev) => {
-      return {
-        ...prev,
-        [event.target.name]: event.target.value,
-      };
-    });
+  const navigate = useNavigate();
+
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
   };
 
-  const submitChackin = (event) => {
-    event.preventDefault();
-    if (!validator.isEmail(register.email)) {
-      alert("You did not enter email");
-    } else {
-      // axios.post(DOMEN_SERVER + "/auth/registration/", {
-      //     username: register.username,
-      //     email: register.email,
-      //     password: register.password,
-      // }).then(res => {
-      //     if (res.data === true) {
-      //         window.location.href = DOMEN_SITE + "/auth"
-      //     } else {
-      //         alert("There is already a user with this email")
-      //     }
-      // }).catch(() => {
-      //     alert("An error occurred on the server")
-      // })
+  const handleChange = (event) => {
+    const field = event.target.getAttribute("data-name");
+
+    if(!!field) {
+      setFormFields({
+        ...formFields, [field]: event.target.value,
+      });
     }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, email, password);
+    resetFormFields();
+    navigate("/chat");
   };
 
   return (
     <div className="form-container">
       <h2 className="title">Log In</h2>
-      <form className="form" onSubmit={submitChackin}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="box">
 
           <Input
@@ -58,28 +52,25 @@ export const SignInForm = () => {
             fullWidth={true}
             placeholder="Email"
             type="email"
-            id="email"
-            name="email"
-            value={register.email}
-            onChange={changeInputRegister}
-            formNoValidate
+            inputProps={{"data-name":"email"}}
+            value={email}
+            onChange={handleChange}
           />
           <Input
             autoComplete="true"
             fullWidth={true}
             placeholder="Password"
             type="password"
-            id="password"
-            name="password"
-            value={register.password}
-            onChange={changeInputRegister}
+            inputProps={{"data-name":"password"}}
+            value={password}
+            onChange={handleChange}
           />
 
         </div>
         <NavLink to="/sign-up" className="button-link">
           <p className="notification">If you don`t have an accout SIGN UP</p>
         </NavLink>
-        <Button variant="outlined" startIcon={<HowToRegIcon />}>Sign In</Button>
+        <Button type="submit" variant="outlined" startIcon={<HowToRegIcon />}>Sign In</Button>
       </form>
     </div>
   );

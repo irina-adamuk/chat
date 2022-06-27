@@ -22,6 +22,13 @@ import ViewSidebarIcon from "@mui/icons-material/ViewSidebar";
 import { ListItemAvatar } from "@mui/material";
 import { Avatar } from "@mui/material";
 
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
+
+
+
 const drawerWidth = 240;
 
 const Main = styled("div", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -70,6 +77,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export const PersistentDrawerRight = () => {
+  const { chatId } = useParams();
+
+  const currentChat = useSelector((state) => state.conversations.conversations.find((conv) => {
+    return conv.id === chatId;
+  }));
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -87,7 +100,7 @@ export const PersistentDrawerRight = () => {
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            Room Name
+            {currentChat.chatName}
           </Typography>
           <IconButton
             color="inherit"

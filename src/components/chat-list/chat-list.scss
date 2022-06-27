@@ -1,6 +1,16 @@
 .chat-list-wrapper {
     width: 100%;
-    height: calc(100vh - 64px);
+    // height: calc(100vh - 64px);
+    height: calc(100vh - 110px);
     display: flex;
     flex-direction: column;
+}
+.aside-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.chat-loading {
+  margin-top: 20px;
+	color: aquamarine;
 }

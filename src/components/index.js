@@ -7,3 +7,5 @@ export * from "./profile-form";
 export * from "./registration";
 export * from "./startChatPage";
 export * from "./defaultChatPage";
+export * from "./create-chat-dialog";
+export * from "./route";

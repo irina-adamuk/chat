@@ -7,7 +7,6 @@ import { useSelector} from "react-redux";
 
 export const ProfilePage = () => {
   const profile = useSelector((state) => state.profile);
-  console.log(profile);
 
   return (
     <div className="profile-page">

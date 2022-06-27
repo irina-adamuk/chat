@@ -117,7 +117,7 @@ export const messageReducer = (state = initialState, action) => {
 
     case REMOVE_MESSAGE_SUCCESS:
       return {
-        ...state,
+        ...state, pendingRemove: false,
         messages: {
           [action.payload.chatId]: state.messages[action.payload.chatId].filter(
             (message) => message.id !== action.payload.messageId

@@ -9,10 +9,14 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import SimpleBar from "simplebar-react";
 
-import { sendMessage, deleteMessage } from "../../store/messages";
+import {
+  sendMessage,
+  deleteMessage,
+  createMessage,
+} from "../../store/messages";
+import { sendMessageWithBot } from "../../store/messages";
 import "simplebar/dist/simplebar.min.css";
 import "./message-list.scss";
-
 
 // const getBotMessage = () => ({
 //   author: "Bot Robot",
@@ -33,9 +37,10 @@ import "./message-list.scss";
 export const MessageList = () => {
   const { chatId } = useParams();
   const dispatch = useDispatch();
-  const messages = useSelector((state)=> state.messages.messages[chatId] ?? []);
+  const messages = useSelector(
+    (state) => state.messages.messages[chatId] ?? []
+  );
 
-  
   // const [messageList, setMessageList] = useState({
   //   chat1: [getBotMessage()],
   //   chat3: [getBotMessage()],
@@ -49,7 +54,13 @@ export const MessageList = () => {
   const send = useCallback(
     (message, author = "User User") => {
       if (message) {
-        dispatch(sendMessage(chatId, {message, author}))
+        const newMessage = {
+          message,
+          author,
+          id: nanoid(5),
+          date: format(new Date(), "dd-MM-yyyy HH:mm:ss"),
+        }
+        dispatch(sendMessageWithBot(chatId, newMessage))
         setValue("");
       }
     },
@@ -71,7 +82,6 @@ export const MessageList = () => {
   //   if (messages.length && lastMessage?.author === "User User") {
   //     timerId = setTimeout(() => {
   //       sendMessage(getBotAnswer(lastMessage.message), "Bot Robot");
-  //       console.log("last message", lastMessage);
   //     }, 1500);
   //   }
 

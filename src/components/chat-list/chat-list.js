@@ -18,7 +18,9 @@ export const ChatList = () => {
   const conversations = useSelector(
     (state) => state.conversations.conversations
   );
-
+  const { pending } = useSelector(
+    (state) => state.conversations
+  );
   const deleteConversationByName = useCallback(
     (chatId, e) => {
       e.preventDefault();
@@ -30,21 +32,31 @@ export const ChatList = () => {
 
   return (
     <div className="aside-wrap">
-      <SimpleBar className="chat-list-wrapper">
+      {pending ? (
+        <h4 className="chat-loading">Загрузка данных</h4>
+      ) : (
         <>
-          {conversations.map((chat) => (
-            <Link className="list-link" key={chat.id} to={`/chat/${chat.id}`}>
-              <ChatListItem
-                chatId={chat.id}
-                chat={chat}
-                selected={chatId === chat.id}
-                deleteConversationByName={deleteConversationByName}
-              />
-            </Link>
-          ))}
+          <SimpleBar className="chat-list-wrapper">
+            <>
+              {conversations.map((chat) => (
+                <Link
+                  className="list-link"
+                  key={chat.id}
+                  to={`/chat/${chat.id}`}
+                >
+                  <ChatListItem
+                    chatId={chat.id}
+                    chat={chat}
+                    selected={chatId === chat.id}
+                    deleteConversationByName={deleteConversationByName}
+                  />
+                </Link>
+              ))}
+            </>
+          </SimpleBar>
+          <CreateChatBtn />
         </>
-      </SimpleBar>
-      <CreateChatBtn />
+      )}
     </div>
   );
 };

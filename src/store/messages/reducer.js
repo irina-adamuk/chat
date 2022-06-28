@@ -1,6 +1,6 @@
 import {
   SEND_MESSAGE,
-  DELETE_MESSAGE,
+  // DELETE_MESSAGE,
   GET_MESSAGES_START,
   GET_MESSAGES_SUCCESS,
   GET_MESSAGES_ERROR,
@@ -71,15 +71,16 @@ export const messageReducer = (state = initialState, action) => {
           ],
         },
       };
-    case DELETE_MESSAGE:
-      return {
-        ...state,
-        messages: {
-          [action.payload.chatId]: state.messages[action.payload.chatId].filter(
-            (message) => message.id !== action.payload.messageId
-          ),
-        },
-      };
+    // case DELETE_MESSAGE:
+    //   return {
+    //     ...state,
+    //     messages: {
+    //       ...state.messages,
+    //       [action.payload.chatId]: state.messages[action.payload.chatId].filter(
+    //         (message) => message.id !== action.payload.messageId
+    //       ),
+    //     },
+    //   };
     case DELETE_CONVERSATION: {
       delete state.messages[action.payload];
       return state;
@@ -116,7 +117,7 @@ export const messageReducer = (state = initialState, action) => {
 
     case REMOVE_MESSAGE_SUCCESS:
       return {
-        ...state,
+        ...state, pendingRemove: false,
         messages: {
           [action.payload.chatId]: state.messages[action.payload.chatId].filter(
             (message) => message.id !== action.payload.messageId
